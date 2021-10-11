@@ -128,6 +128,12 @@ public class DomReader {
 		Document document = null;
 
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+	        factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+	        factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
+	        factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+	        factory.setFeature("http://apache.org/xml/features/dom/create-entity-ref-nodes", false);
+	        factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
 		// factory.setValidating(true);
 		// factory.setNamespaceAware(true);
 
