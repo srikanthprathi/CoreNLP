@@ -452,7 +452,15 @@ public class Ssurgeon  {
   @SuppressWarnings("unchecked")
   public List<SsurgeonPattern> readFromFile(File file) throws Exception {
     List<SsurgeonPattern> retList = new ArrayList<>();
-    Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(file);
+    DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+    dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+    dbf.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+    dbf.setFeature("http://xml.org/sax/features/external-general-entities", false);
+    dbf.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+    dbf.setFeature("http://apache.org/xml/features/dom/create-entity-ref-nodes", false);
+    dbf.setFeature("http://xml.org/sax/features/external-general-entities", false);
+    DocumentBuilder db = dbf.newDocumentBuilder();
+    Document doc = db.parse(f);
 
     if (VERBOSE)
       System.out.println("Reading ssurgeon file="+file.getAbsolutePath());
